@@ -22,6 +22,15 @@ def get_mysql_connection(db_host, db_name, db_user, db_pass):
             print(error)
     return connection
 
+def get_connection(db_type, db_host, db_name, db_user, db_pass):
+    connection = None
+    if db_type == 'mysql':
+        connection = get_mysql_connection(db_host=db_host,
+                                          db_name=db_name,
+                                          db_user=db_user,
+                                          db_pass=db_pass)
+    return connection
+
 def get_tables(path):
     tables = pd.read_csv(path, sep=':')
     return tables.query('to_be_loaded == "yes"')
